@@ -1,0 +1,50 @@
+
+    <nb-card>
+        <nb-card-header>
+          <h4>
+            Liste des agences
+          </h4>
+          <div  style="float: right">
+            <button class="btn btn-primary text-white" [routerLink]="['/pages/agences/new']">
+              <i class="fa fa-plus"></i>Ajouter une agence</button>
+          </div>
+        </nb-card-header>
+      
+        <nb-card-body>
+          <table  datatable *ngIf="agences"  [dtOptions]="dtOptions"   class="table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Libelle </th>
+                <th>Libelle cou</th>
+                <th>Adresse</th>
+                <th>Pays</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Code</th>
+                <th>Libelle </th>
+                <th>Libelle cou</th>
+                <th>Adresse</th>
+                <th>Pays</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr *ngFor="let agence of agences">
+                <td>{{agence.code_interne}}</td>
+                <td>{{agence.liblon}}</td>
+                <td>{{agence.libcou}}</td>
+                <td>{{agence.adresse}}</td>
+                <td>{{agence.pays.nom}}</td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </nb-card-body>
+      </nb-card>
+      
+      
+  
+  
+  

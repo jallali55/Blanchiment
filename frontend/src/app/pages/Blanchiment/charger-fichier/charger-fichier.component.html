@@ -1,0 +1,64 @@
+
+
+
+
+
+
+    
+
+<nb-card>
+    <nb-card-header>
+  
+      <h4>        La liste des fichiers
+      </h4>
+        
+    
+
+        </nb-card-header>
+  
+    <nb-card-body>
+        <div class="row">
+            <div class="col-8">
+                <table  datatable *ngIf="files" [dtOptions]="dtOptions"   class="table">
+                    <thead>
+                      <tr>
+                        <th>Date de téléchargement</th>
+                        <th>Télecharger</th>
+                      </tr> 
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>Date de téléchargement</th>
+                        <th>Télecharger</th>
+                      </tr> 
+                     
+                    </tfoot>
+                    <tbody>
+              
+                        <tr *ngFor="let f of files">
+                            <td>{{f.uploadDate|date:'medium'}}</td>
+                            <td>
+                                <a href="http://localhost:8080/clientsuspect/files/{{f.name}}" 
+                                download="archive.zip">
+                                {{f.name}}
+                              </a>
+                            </td>
+            
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-4">
+                <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  (change)="readUrl($event)" />
+                <br>
+                <br>
+                <button class="btn btn-primary w-100" (click)="onSubmit()">Upload</button>
+            </div>
+        </div>
+      
+    </nb-card-body>
+  </nb-card>
+  
+  
+  
+  

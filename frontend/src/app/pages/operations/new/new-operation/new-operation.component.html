@@ -1,0 +1,37 @@
+
+
+    <div class="card">
+        <div class="card-body">
+    <form [formGroup]="operationForm" (ngSubmit)="addOperation()">
+        <div class="row">
+            <div class="form-group col-12">
+                <label for="exampleInputEmail1">Type</label>
+                <select class="form-control" formControlName="type">
+                    <option value="V">Versement</option>
+                    <option value="R">Retrait</option>
+                 </select>
+                 <div *ngIf="f.type.errors && submited"class="alert-danger">* Type d'operation réquis!</div>
+
+             </div>  
+            <div class="form-group col-6">
+                <label for="exampleInputEmail1">Compte</label>
+                <select  class="form-control" formControlName="compte_id">
+                    <option  *ngFor="let compte of comptes" value="{{compte.id}}">{{compte.rib}}</option>
+                </select>
+                <div *ngIf="f.compte_id.errors && submited"class="alert-danger">* Compte réquis!</div>
+
+             </div>    
+        <div class="form-group col-6">
+            <label for="exampleInputEmail1">Solde</label>
+            <input type="number" class="form-control" formControlName="montant">
+            <div *ngIf="f.montant.errors && submited"class="alert-danger">* Montant réquis!</div>
+
+         </div>
+   
+        
+         <div class="col-8"></div>
+<button class="btn btn-success col-4">Enregistrer</button>
+    </div>
+    </form>
+    </div>
+</div>

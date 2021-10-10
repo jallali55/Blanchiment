@@ -1,0 +1,83 @@
+
+
+
+
+
+
+    
+
+<nb-card>
+    <nb-card-header>
+  
+      <h4>        La liste des clients morale
+      </h4>
+        
+      
+      <div  style="float: right">
+        <button class="btn btn-primary text-white" [routerLink]="['/pages/referentiel/clientmorale/new']">  <i class="fa fa-plus"></i>Ajouter un nouveau client morale</button>
+      </div>
+    
+        </nb-card-header>
+  
+    <nb-card-body>
+      <table  datatable *ngIf="clientMorales" [dtOptions]="dtOptions"   class="table">
+        <thead>
+          <tr>
+            <th>Raison Social</th>
+            <th>Numero Fiscal</th>
+            <th>Numero Document Fiscal</th>
+            <th>Forme Juridique</th>
+            <th>Raison Economique</th>
+            <th>Télephone</th>
+            <th>Mobile</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Pays</th>
+            <th></th>
+          </tr> 
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Raison Social</th>
+            <th>Numero Fiscal</th>
+            <th>Numero Document Fiscal</th>
+            <th>Forme Juridique</th>
+            <th>Raison Economique</th>
+            <th>Télephone</th>
+            <th>Mobile</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Pays</th>
+            <th></th>
+          </tr>
+         
+        </tfoot>
+        <tbody>
+  
+            <tr *ngFor="let cm of clientMorales">
+                <td>{{cm.raisonSocial}}</td>
+                <td>{{cm.numeroFiscal}}</td>
+                <td>{{cm.numeroDocumentFiscal}}</td>
+                <td>{{cm.formeJuridique}}</td>
+                <td>{{cm.raisonEconomique}}</td>
+                <td>{{cm.tel}}</td>
+                <td>{{cm.mobile}}</td>
+                <td>{{cm.fax}}</td>
+                <td>{{cm.email}}</td>
+                <td>{{cm.pays.nom}}</td>
+                <td>
+                  <button  class="btn btn-outline-warning" (click)="edit(cm.id)" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-edit"></i></button>
+
+              </td>
+  
+  
+  
+            </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+  
+  
+  
+  

@@ -1,0 +1,101 @@
+
+
+ 
+
+<nb-card>
+   <nb-card-header>
+     Nouveau client morale
+   </nb-card-header>
+ 
+   <nb-card-body>
+     
+      <form [formGroup]="clientMoraleForm" (ngSubmit)="onSubmit()">
+         <div class="row">
+          <div class="form-group col-12">
+             <label for="exampleInputEmail1">Email</label>
+             <input type="text" class="form-control" formControlName="email">
+             <div *ngIf="submited && f.email.errors" class="alert-danger">
+               <div *ngIf="f.email.errors.required">* Email réquis!</div>
+               <div *ngIf="f.email.errors.email">* Email doit être une adresse e-mail valide</div>
+           </div>
+          </div>
+    
+          <div class="form-group col-4">
+             <label for="text">Fax</label>
+             <input type="text" class="form-control" formControlName="fax">
+             <div *ngIf="f.fax.errors && submited"class="alert-danger">* Fax réquis!</div>
+
+          </div>
+          <div class="form-group col-4">
+             <label for="exampleInputEmail1">Télephone</label>
+             <input type="text" class="form-control" formControlName="tel">
+             <div *ngIf="f.tel.errors && submited"class="alert-danger">* Télephone réquis!</div>
+
+          </div>
+          <div class="form-group col-4">
+             <label for="exampleInputEmail1">Mobile</label>
+             <input type="text" class="form-control" formControlName="mobile">
+             <div *ngIf="f.mobile.errors && submited"class="alert-danger">* Mobile réquis!</div>
+
+          </div>
+      
+            <div class="form-group col-12">
+                <label for="exampleInputEmail1">raison Social</label>
+                <input type="text" class="form-control" formControlName="raisonSocial">
+                <div *ngIf="f.raisonSocial.errors && submited"class="alert-danger">* raison Social réquis!</div>
+             </div>
+             <div class="form-group col-5">
+                <label for="exampleInputEmail1">Numero Fiscal</label>
+                <input type="text" class="form-control" formControlName="numeroFiscal">
+                <div *ngIf="f.numeroFiscal.errors && submited"class="alert-danger">* Numero Fiscal réquis!</div>
+                <div *ngIf="submited && !unique" class="alert-danger">
+                  ce numero Fiscal existe déja
+               </div>
+
+             </div>
+             <div class="form-group col-7">
+                <label for="exampleInputEmail1">Numero DocumentFiscal</label>
+                <input type="text" class="form-control" formControlName="numeroDocumentFiscal">
+                <div *ngIf="f.numeroDocumentFiscal.errors && submited"class="alert-danger">* Numero DocumentFiscal réquis!</div>
+
+             </div>
+             <div class="form-group col-6">
+                <label for="exampleInputEmail1">Forme Juridique</label>
+                <select class="form-control" formControlName="formeJuridique">
+                   <option value="Entreprise individuelle">Entreprise individuelle</option>
+                   <option value="Société à responsabilité limitée (SARL)">Société à responsabilité limitée (SARL)</option>
+                   <option value="Société unipersonnelle à responsabilité limitée (SUARL)">Société unipersonnelle à responsabilité limitée (SUARL)</option>
+                   <option value="Société anonyme (SA)">Société anonyme (SA)</option>
+                   <option value="Société en commandite par actions (SCA)">Société en commandite par actions (SCA)</option>
+    
+                </select>
+                <div *ngIf="f.formeJuridique.errors && submited"class="alert-danger">* Forme Juridique réquis!</div>
+
+             </div>
+             <div class="form-group col-6">
+                <label for="exampleInputEmail1">Raison Economique</label>
+                <input type="text" class="form-control" formControlName="raisonEconomique">
+                <div *ngIf="f.raisonEconomique.errors && submited"class="alert-danger">* Raison Economique réquis!</div>
+
+             </div>
+              <div class="form-group col-12">
+                <label for="exampleInputEmail1">Pays</label>
+                <select  class="form-control" formControlName="pays">
+                    <option *ngFor="let pay of pays"  value="{{pay.id}}" selected>{{pay.nom}}</option>
+                </select>
+                <div *ngIf="f.pays.errors && submited"class="alert-danger">* Pays réquis!</div>
+
+             </div>
+          
+         
+    
+          
+     
+         
+     <div class="col-8"></div>
+     <button class="btn btn-success col-4" type="submit">Ajouter</button>
+     </div>
+     </form>
+        </nb-card-body>
+ </nb-card>
+ 

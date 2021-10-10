@@ -1,0 +1,81 @@
+
+
+
+
+
+
+
+
+    
+
+<nb-card>
+    <nb-card-header>
+  
+      <h4>        La liste des clients physique
+      </h4>
+        
+      
+      <div  style="float: right">
+        <button class="btn btn-primary text-white" [routerLink]="['/pages/referentiel/clientphysique/new']">
+            <i class="fa fa-plus"></i>Ajouter un nouveau client physique</button>
+              </div>
+    
+        </nb-card-header>
+  
+    <nb-card-body>
+      <table  datatable *ngIf="clientPhysiques" [dtOptions]="dtOptions"  class="table">
+        <thead>
+          <tr>
+            <th>Cin</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Fonction</th>
+            <th>Télephone</th>
+            <th>Mobile</th>
+            <th>Pays</th>
+            <th></th>
+          </tr>
+          
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Cin</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Fonction</th>
+            <th>Télephone</th>
+            <th>Mobile</th>
+            <th>Pays</th>
+            <th></th>
+          </tr>
+        </tfoot>
+        <tbody>
+  
+            <tr *ngFor="let cp of clientPhysiques">
+            <td>{{cp.cin}}</td>
+            <td>{{cp.nom}}</td>
+            <td>{{cp.prenom}}</td>
+            <td>{{cp.email}}</td>
+            <td>{{cp.fct}}</td>
+            <td>{{cp.tel}}</td>
+            <td>{{cp.mobile}}</td>
+            <td>{{cp.pays.nom}}</td>
+            <td>
+
+                              <button  class="btn btn-outline-warning" (click)="edit(cp.id)" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-edit"></i></button>
+
+          </td>
+
+
+
+        </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+  
+  
+  
+  

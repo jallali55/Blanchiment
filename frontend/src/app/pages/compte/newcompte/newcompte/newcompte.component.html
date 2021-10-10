@@ -1,0 +1,103 @@
+
+
+<nb-card>
+    <nb-card-header>
+      Nouveau compte 
+    </nb-card-header>
+  
+    <nb-card-body>
+      
+<form [formGroup]="compteForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-12">
+            <label for="exampleInputEmail1">Numero Compte</label>
+            <input type="text" class="form-control" formControlName="numcpt">
+            <div *ngIf="submited && f.numcpt.errors" class="alert-danger">
+                <div *ngIf="f.numcpt.errors.required">* Numero Compte réquis!</div>
+                <div *ngIf="f.numcpt.errors.minlength">* Numero Compte doit être au moins de 6 caractères</div>
+            </div>
+            <div *ngIf="submited && !unique" class="alert-danger">
+                ce numero de compte existe déja
+             </div>
+     
+
+         </div>
+         <div class="form-group col-6">
+            <label for="exampleInputEmail1">Type Compte</label>
+            <select class="form-control" formControlName="typecompte">
+                <option value="courant">Compte Courant</option>
+                <option value="epargne">Compte Epargne</option>
+            </select>
+            <div *ngIf="f.typecompte.errors && submited"class="alert-danger">* Type Compte réquis!</div>
+
+         </div>
+         <div class="form-group col-6">
+            <label for="exampleInputEmail1">Rib</label>
+            <input type="text" class="form-control" formControlName="Rib">
+            <div *ngIf="submited && f.Rib.errors" class="alert-danger">
+                <div *ngIf="f.Rib.errors.required">* Rib réquis!</div>
+                <div *ngIf="f.Rib.errors.minlength">* Rib doit être au moins de 13 caractères</div>
+            </div>
+
+         </div>
+         <div class="form-group col-12">
+            <label for="exampleInputEmail1">Solde</label>
+            <input type="number" class="form-control" formControlName="solde">
+            <div *ngIf="f.solde.errors && submited"class="alert-danger">* Solde réquis!</div>
+
+         </div>
+         <div class="form-group col-6">
+            <label for="exampleInputEmail1">Date Ouverture</label>
+            <input type="date" class="form-control" formControlName="date_ouverture">
+            <div *ngIf="f.date_ouverture.errors && submited"class="alert-danger">* Date Ouverture réquis!</div>
+
+         </div>
+         <div class="form-group col-6">
+            <label for="exampleInputEmail1">Statut Compte</label>
+            <select class="form-control" formControlName="statut">
+                <option value="actif">Compte Actif</option>
+                <option value="inactif">Compte Inactif</option>
+            </select>
+            <div *ngIf="f.statut.errors && submited"class="alert-danger">* Statut Compte réquis!</div>
+
+         </div>
+        
+         <div class="form-group col-6">
+            <label for="exampleInputEmail1">Agence</label>
+            <select  class="form-control" formControlName="id_agence">
+                <option  *ngFor="let agenc of agences" value="{{agenc.id}}">{{agenc.libcou}} {{agenc.adresse}}</option>
+            </select>
+            <div *ngIf="f.id_agence.errors && submited"class="alert-danger">* Agence réquis!</div>
+
+         </div>
+         <div class="form-group col-6">
+            <label for="exampleInputEmail1">Devises</label>
+            <select  class="form-control" formControlName="id_devise">
+                <option  *ngFor="let devise of devises" value="{{devise.id}}">{{devise.name}} {{devise.symbol}}</option>
+            </select>
+            <div *ngIf="f.id_devise.errors && submited"class="alert-danger">* Devises réquis!</div>
+
+         </div>
+         <div class="form-group col-12">
+            <label for="exampleInputEmail1">Propriétaire</label>
+            <select  class="form-control" formControlName="id_tier">
+                <option  *ngFor="let tier of tiers" value="{{tier.id}}" >
+                    <div *ngIf="tier.nom"> {{tier.nom}} {{tier.prenom}}</div>
+                    <div *ngIf="!tier.nom"> {{tier.raisonSocial}}</div>
+                </option>
+            </select>
+            <div *ngIf="f.id_tier.errors && submited"class="alert-danger">* Propriétaire réquis!</div>
+
+         </div>
+        
+     
+         
+
+    
+<div class="col-8"></div>
+<button class="btn btn-success col-4" type="submit">Ajouter</button>
+</div>
+</form>
+    </nb-card-body>
+  </nb-card>
+  

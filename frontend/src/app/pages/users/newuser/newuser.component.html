@@ -1,0 +1,92 @@
+
+
+ 
+
+<nb-card>
+    <nb-card-header>
+      Nouveau utilisateur
+    </nb-card-header>
+  
+    <nb-card-body>
+      
+       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="form-group col-6">
+                <label for="text">Nom</label>
+                <input type="text" class="form-control" formControlName="firstName">
+                <div *ngIf="f.firstName.errors && submited"class="alert-danger">* Nom réquis!</div>
+             </div>
+             <div class="form-group col-6">
+                <label for="exampleInputEmail1">Prenom</label>
+                <input type="text" class="form-control" formControlName="lastName">
+                <div *ngIf="f.lastName.errors && submited"class="alert-danger">* Prenom réquis!</div>
+
+             </div>
+           <div class="form-group col-12">
+              <label for="exampleInputEmail1">Email</label>
+              <input type="text" class="form-control" formControlName="email">
+              <div *ngIf="submited && f.email.errors" class="alert-danger">
+               <div *ngIf="f.email.errors.required">* Email réquis!</div>
+               <div *ngIf="f.email.errors.email">* Email doit être une adresse e-mail valide</div>
+           </div>
+           </div>
+           <div class="form-group col-6">
+            <label for="exampleInputEmail1">Nom d'utilisateur</label>
+            <input type="text" class="form-control" formControlName="username">
+            <div *ngIf="submited && f.username.errors" class="alert-danger">
+               <div *ngIf="f.username.errors.required">* Nom d'utilisateur réquis!</div>
+               <div *ngIf="f.username.errors.minlength">* Nom d'utilisateur doit être au moins de 4 caractères</div>
+           </div>
+           <div *ngIf="submited && !unique" class="alert-danger">
+              ce nom d'utilisateur existe déja
+           </div>
+
+         </div>
+         <div class="form-group col-6">
+            <label for="exampleInputEmail1">Mot de passe</label>
+            <input type="password" class="form-control" formControlName="password">
+            <div *ngIf="submited && f.password.errors" class="alert-danger">
+               <div *ngIf="f.password.errors.required">* mot de passe réquis!</div>
+               <div *ngIf="f.password.errors.minlength">* Le mot de passe doit être au moins de 8 caractères</div>
+           </div>
+         </div>
+     
+          
+           <div class="form-group col-4">
+              <label for="exampleInputEmail1">Mobile</label>
+              <input type="number" class="form-control" formControlName="phoneNumber">
+              <div *ngIf="f.phoneNumber.errors && submited"class="alert-danger">* Mobile réquis!</div>
+
+           </div>
+       
+              <div class="form-group col-4">
+                 <label for="exampleInputEmail1">Role</label>
+                 <select class="form-control" formControlName="authority">
+                    <option value="1">Admin</option>
+                    <option value="2">Banker</option>
+                 </select>
+                 <div *ngIf="f.authority.errors && submited"class="alert-danger">* Role réquis!</div>
+
+              </div>
+
+              <div class="col-4"></div>
+              <div class="form-check col-4">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="isenabled">
+                <label class="form-check-label" for="flexCheckDefault">
+                 Activer ce compte
+                </label>
+              </div>
+              
+           
+          
+     
+           
+      
+          
+      <div class="col-8"></div>
+      <button class="btn btn-success col-4" type="submit">Ajouter</button>
+      </div>
+      </form>
+         </nb-card-body>
+  </nb-card>
+  

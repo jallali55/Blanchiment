@@ -1,0 +1,62 @@
+<nb-card>
+    <nb-card-header>
+        <h4>        Liste des devises
+        </h4>
+      
+    </nb-card-header>
+
+
+  
+    <nb-card-body>
+        <div class="row">
+            <div class="col-8">
+                
+      <table  datatable *ngIf="devises"  [dtOptions]="dtOptions"  class="table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Libelle</th>
+            <th>Symbole</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Code</th>
+            <th>Libelle</th>
+            <th>Symbole</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr *ngFor="let devise of devises">
+            <td>{{devise.code}}</td>
+            <td>{{devise.name}}</td>
+            <td>{{devise.symbol}}</td>
+          </tr>
+         
+        </tbody>
+      </table>
+            </div>
+            <div class="col-4 ">
+                <h5>convertisseur de devises</h5>
+                <select class="col-12 form-control"  name="" [(ngModel)]="from">
+                    <option *ngFor="let devise of devises" value="{{devise.code}}">{{devise.name}} {{devise.symbol}}</option> 
+                 </select>
+                 <br>
+                 <select class="col-12 form-control" [(ngModel)]="to">
+                    <option *ngFor="let devise of devises" value="{{devise.code}}" >{{devise.name}} {{devise.symbol}}</option> 
+                 </select>
+                 <br>
+                 <input class="form-control col-12" type="number" placeholder="quantite" [(ngModel)]="quantite">
+                 <br> 
+                 <button (click)="convert()"  class="btn btn-primary col-12">Convert</button>
+
+                 <h3>{{res}}</h3>
+                 
+                 
+                 
+            </div>
+        </div>
+
+     
+    </nb-card-body>
+  </nb-card>

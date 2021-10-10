@@ -1,0 +1,110 @@
+
+<div class="row">
+    <div class="col-4">
+        <a [routerLink]="['/pages/compte/']" style="text-decoration:none; ">
+            <div class="card bg-white mb-3" style="  box-shadow: 5px 7px #888888  ">
+
+                <h5 style="text-align: center;">
+                    <i class="fa fa-folder"></i> Compte <span class="badge bg-success text-dark">{{nbcompte}}</span>
+                </h5>
+                    
+                    <google-chart #chart
+                    [type]="type"
+                    [data]="comptestat"
+                    >
+                 </google-chart>
+              </div>
+        </a>
+      
+    </div>
+    <div class="col-4">
+        <a [routerLink]="['/pages/referentiel/clientphysique']" style="text-decoration:none; ">
+
+        <div class="card bg-white mb-3" style="  box-shadow: 5px 7px #888888">
+
+            <h5 style="text-align: center;">
+                <i class="fa fa-user-friends"></i> Client <span class="badge bg-info text-dark">{{nbtier}}</span>
+            </h5>
+                
+                <google-chart #chart
+                [type]="type"
+                [data]="tierstat"
+                >
+             </google-chart>
+          </div>
+          </a>
+    </div>
+    <div class="col-4 row">
+        <div class="card col-12 text-white bg-danger mb-3" style="  box-shadow: 5px 7px #888888">
+            <div class="card-body">
+                <h5> <i class="fa fa-user-slash"></i>Nombre des clients suspects <span  style="font-style: oblique;">{{nbsuspect}}</span> </h5>
+            </div>
+          </div>
+          <div class="card col-12 text-white bg-success mb-3" style="  box-shadow: 5px 7px #888888">
+            <div class="card-body  text-white">
+                <h5 class=" text-white"> <i class="fa fa-users"></i> Nombre des utilisateurs <span  style="font-style: oblique;">{{nbuser}}</span> </h5>
+            </div>
+          </div>
+    </div>
+    
+<div class="col-4 ">
+    <nb-card class="container">
+
+    <h5>convertisseur de devises</h5>
+    <select class="col-12 form-control"  name="" [(ngModel)]="from">
+        <option *ngFor="let devise of devises" value="{{devise.code}}">{{devise.name}} {{devise.symbol}}</option> 
+     </select>
+     <br>
+     <select class="col-12 form-control" [(ngModel)]="to">
+        <option *ngFor="let devise of devises" value="{{devise.code}}" >{{devise.name}} {{devise.symbol}}</option> 
+     </select>
+     <br>
+     <input class="form-control col-12" type="number" placeholder="quantite" [(ngModel)]="quantite">
+     <br> 
+     <button (click)="convert()"  class="btn btn-primary col-12">Convert</button>
+
+     <h3>{{res}}</h3>
+     
+     
+</nb-card>
+     
+</div>
+
+<div class="col-8">
+    <nb-card class="container">
+      
+      
+          <table  datatable *ngIf="pays"  [dtOptions]="dtOptions"   class="table">
+            <thead>
+              <tr>
+                <th>Pays</th>
+                <th>Flag</th>
+                <th> Code Télephone</th>
+                <th>Douteux</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Pays</th>
+                <th>Flag</th>
+                <th> Code Télephone</th>
+                <th>Douteux</th>
+                <th></th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr *ngFor="let pays of pays">
+                <td>{{pays.nom}}</td>
+                <td><img src="../../../../assets/images/country/{{pays.iso}}-32.png"/></td>
+                <td>+{{pays.phonecode}}</td>
+                <td>{{pays.douteux}}</td>
+                <td>
+            </td>
+              </tr>
+             
+            </tbody>
+          </table>
+      </nb-card>
+</div>
+</div>

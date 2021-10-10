@@ -1,0 +1,73 @@
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<nb-card>
+    <nb-card-header>
+  
+      <h4>        La liste des utilisateur
+      </h4>
+        
+      
+      <div  style="float: right">
+        <button class="btn btn-primary text-white" [routerLink]="['/pages/users/new']">  <i class="fa fa-plus"></i>Ajouter un nouveau utilisateur</button>
+      </div>
+    
+        </nb-card-header>
+  
+    <nb-card-body>
+      <table  datatable *ngIf="users" [dtOptions]="dtOptions"   class="table">
+        <thead>
+          <tr>
+              <th>Role</th>
+              <th>Nom d'utilisateur</th>
+            <th>Email</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Télephone</th>
+            <th></th>
+          </tr> 
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Role</th>
+            <th>Nom d'utilisateur</th>
+          <th>Email</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Télephone</th>
+          <th></th>
+          </tr>
+       
+        </tfoot>
+        <tbody>
+  
+            <tr *ngFor="let user of users">
+                <td>{{user.authority.role}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.phoneNumber}}</td>
+                <td>
+                  <button  class="btn btn-outline-warning" (click)="edit(user.id)" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-edit"></i></button>
+                    <button  class="btn btn-outline-danger" (click)="disable(user.id)" *ngIf="user.enabled" data-toggle="tooltip" data-placement="top" title="Désactiver" ><i class="fa fa-ban"></i></button>
+                    <button class="btn btn-outline-success" (click)="enable(user.id)" *ngIf="!user.enabled" data-toggle="tooltip" data-placement="top" title="Activer" ><i class="fa fa-check"></i></button>
+                </td>
+  
+  
+  
+            </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+
+ 
+  
+  
+  

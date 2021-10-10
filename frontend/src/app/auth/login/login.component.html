@@ -1,0 +1,39 @@
+
+<body>
+<form action="#" method="post" target="_blank">
+    <div class="wrapper">
+      
+        <div class="login">
+         
+          <div class="login-form"> 
+               
+            <h1 class="login-title">Login </h1>
+            
+            <div class="form-wrapper">
+              <div class="input-wrapper">
+                 <label class="label" for="email">Nom d'utilisateur</label>
+                <input class="input" [(ngModel)]="email" type="text" id="email" name="username" required autocomplete="off"/>
+              </div><br>
+              <div class="input-wrapper">
+                 <label class="label" for="password">Password</label>
+                <input class="input" [(ngModel)]="password" type="password" id="password" name="password" required/>
+              </div>
+              <div class="action-help">
+                <div *ngIf="mode==1" class="alert alert-danger">
+                  nom d'utilisateur ou mot de passe incorrect
+                </div>
+              </div>
+              <div class="actions">
+                <input class="action" type="submit" (click)="login()" value="Login"/>
+                
+              </div>
+              
+            </div>
+          </div>
+          <div class="login-decoration">
+            
+          </div>
+        </div>
+      </div>
+  </form>
+</body>

@@ -1,0 +1,48 @@
+
+    <nb-card>
+      <nb-card-header>
+        <h4>
+          Liste des pays
+        </h4>
+      </nb-card-header>
+    
+      <nb-card-body>
+        <table  datatable *ngIf="pays"  [dtOptions]="dtOptions"   class="table">
+          <thead>
+            <tr>
+              <th>Pays</th>
+              <th>Flag</th>
+              <th> Code Télephone</th>
+              <th>Douteux</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Pays</th>
+              <th>Flag</th>
+              <th> Code Télephone</th>
+              <th>Douteux</th>
+              <th></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr *ngFor="let pays of pays">
+              <td>{{pays.nom}}</td>
+              <td><img src="../../../../assets/images/country/{{pays.iso}}-32.png"/></td>
+              <td>+{{pays.phonecode}}</td>
+              <td>{{pays.douteux}}</td>
+              <td>
+                <button  class="btn btn-outline-danger" (click)="disable(pays.id)" *ngIf="!pays.douteux" data-toggle="tooltip" data-placement="top" title="Douteux" ><i class="fa fa-ban"></i></button>
+                <button class="btn btn-outline-success" (click)="enable(pays.id)" *ngIf="pays.douteux" data-toggle="tooltip" data-placement="top" title="Non Douteux" ><i class="fa fa-check"></i></button>
+              </td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+    
+    
+
+

@@ -1,0 +1,57 @@
+
+
+
+
+
+
+    
+
+<nb-card>
+  <nb-card-header>
+
+    <h4>        La liste noire
+    </h4>
+      
+  
+  
+      </nb-card-header>
+
+  <nb-card-body>
+    <table  datatable *ngIf="listeNoirs" [dtOptions]="dtOptions"   class="table">
+      <thead>
+        <tr>
+          <th>Date d'insertion</th>
+          <th>Numero Fiscal</th>
+          <th>Cin</th>
+          <th>Niveau de risque</th>
+        </tr> 
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Date d'insertion</th>
+          <th>Numero Fiscal</th>
+          <th>Cin</th>
+          <th>Niveau de risque</th>
+        </tr> 
+       
+      </tfoot>
+      <tbody>
+
+          <tr *ngFor="let ln of listeNoirs">
+              <td>{{ln.date_insertion|date:'medium'}}</td>
+              <td>{{ln.numeroFiscal}}</td>
+              <td>
+                <div *ngIf="ln.cin==0">-</div>
+                <div *ngIf="ln.cin!=0">
+
+                  {{ln.cin}}</div>
+              </td>
+              <td>{{ln.niveau_risque}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>
+
+
+

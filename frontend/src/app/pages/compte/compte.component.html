@@ -1,0 +1,87 @@
+
+
+
+
+    
+
+<nb-card>
+  <nb-card-header>
+
+    <h4>        La liste des comptes
+    </h4>
+      
+    
+    <div  style="float: right">
+      <button class="btn btn-primary text-white" [routerLink]="['/pages/compte/new']">
+        <i class="fa fa-plus"></i>Ajouter un nouveau compte</button>
+    </div>
+  
+      </nb-card-header>
+
+  <nb-card-body>
+    <table  datatable *ngIf="listcomptes"   [dtOptions]="dtOptions"  class="table">
+      <thead>
+        <tr>
+          <th>Propriétaire</th>
+          <th>RIB</th>
+          <th>Solde</th>
+          <th>Numero compte</th>
+          <th>Type compte</th>
+          <th>Status compte</th>
+          <th>Agence</th>
+          <th>Devise</th>
+          <th></th>
+        </tr> 
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Propriétaire</th>
+        <th>RIB</th>
+        <th>Solde</th>
+        <th>Numero compte</th>
+        <th>Type compte</th>
+        <th>Status compte</th>
+        <th>Agence</th>
+        <th>Devise</th>
+        <th></th>
+      </tr> 
+    </tfoot>
+    <tbody>
+
+        <tr *ngFor="let cp of listcomptes">
+            <td>
+              <div *ngIf="cp.tier.nom"> {{cp.tier.nom}} {{cp.tier.prenom}}</div>
+              <div *ngIf="!cp.tier.nom"> {{cp.tier.raisonSocial}}</div>
+              </td>
+            <td>{{cp.rib}}</td>
+            <td>{{cp.solde}}</td>
+            <td>{{cp.numcpt}}</td>
+            <td>Compte {{cp.typecompte}}</td>
+           
+
+            <td>
+                <div *ngIf="cp.statut==='actif'">
+                  Compte actif
+                </div>
+                <div *ngIf="cp.statut!='actif'">
+                  Compte inactif            
+                    </div>
+              </td>
+              <td>{{cp.agence.liblon}}</td>
+              <td>{{cp.devise.name}} {{cp.devise.symbol}}</td>
+            <td>
+              <button  class="btn btn-outline-danger" (click)="disable(cp.id)" *ngIf="cp.statut=='actif'" data-toggle="tooltip" data-placement="top" title="Désactiver ce compte" ><i class="fa fa-ban"></i></button>
+              <button class="btn btn-outline-success" (click)="enable(cp.id)" *ngIf="cp.statut!='actif'" data-toggle="tooltip" data-placement="top" title="Activer ce compte" ><i class="fa fa-check"></i></button>
+            
+          </td>
+
+
+
+        </tr>
+    </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>
+
+
+

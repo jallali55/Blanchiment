@@ -1,0 +1,73 @@
+
+
+
+
+    
+
+ <nb-card>
+  <nb-card-header>
+
+    <h4>        La liste des operations
+    </h4>
+      
+    
+    <div  style="float: right">
+      <button class="btn btn-primary text-white" [routerLink]="['/pages/operations/new']">
+        <i class="fa fa-plus"></i>Effectuer une nouvelle operation</button>
+    </div>
+  
+      </nb-card-header>
+
+  <nb-card-body>
+    <table  datatable *ngIf="operations"  [dtOptions]="dtOptions"  class="table">
+      <thead>
+        <tr>
+          <th>Date d'opération</th>
+          <th>Type d'operation</th>
+          <th>Propriétaire</th>
+          <th>RIB</th>
+          <th>Montant</th>
+          <th>Solde Aprés <i class="fa fa-chart-line"></i></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Date d'opération</th>
+          <th>Type d'operation</th>
+          <th>Propriétaire</th>
+          <th>RIB</th>
+          <th>Montant</th>
+          <th>Solde Aprés <i class="fa fa-chart-line"></i></th>
+        </tr>
+      </tfoot>
+      <tbody>
+
+          <tr *ngFor="let op of operations">
+            <td>{{op.date_operation|date:'medium'}}</td>
+
+              <td>
+                <div *ngIf="op.soldeBefore<op.soldeAfter" class="text-success"> Versement</div>
+                <div *ngIf="op.soldeBefore>op.soldeAfter" class="text-danger"> Retrait</div>
+                </td>
+              <td>
+                <div *ngIf="op.compte.tier.nom"> {{op.compte.tier.nom}} {{op.compte.tier.prenom}}</div>
+                <div *ngIf="!op.compte.tier.nom"> {{op.compte.tier.raisonSocial}}</div>
+              </td>
+              <td>{{op.compte.rib}}</td>
+              <td><div *ngIf="op.soldeBefore<op.soldeAfter" class="text-success"> {{op.montant}} {{op.compte.devise.name}} {{op.compte.devise.symbol}} </div>
+                <div *ngIf="op.soldeBefore>op.soldeAfter" class="text-danger"> {{op.montant}} {{op.compte.devise.name}} {{op.compte.devise.symbol}} </div>
+                  </td>
+              <td>
+                <div *ngIf="op.soldeBefore<op.soldeAfter" class="text-success"> {{op.soldeAfter}} {{op.compte.devise.name}} {{op.compte.devise.symbol}} </div>
+                <div *ngIf="op.soldeBefore>op.soldeAfter" class="text-danger"> {{op.soldeAfter}} {{op.compte.devise.name}} {{op.compte.devise.symbol}}</div>
+                  </td>
+             
+
+
+
+          </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>
+

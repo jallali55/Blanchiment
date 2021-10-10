@@ -1,0 +1,70 @@
+
+
+ 
+
+<nb-card>
+    <nb-card-header>
+      Modifier un utilisateur
+    </nb-card-header>
+  
+    <nb-card-body>
+      
+       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="form-group col-6">
+                <label for="text">Nom</label>
+                <input type="text" class="form-control" formControlName="firstName">
+                <div *ngIf="f.firstName.errors && submited"class="alert-danger">* Nom réquis!</div>
+             </div>
+             <div class="form-group col-6">
+                <label for="exampleInputEmail1">Prenom</label>
+                <input type="text" class="form-control" formControlName="lastName">
+                <div *ngIf="f.lastName.errors && submited"class="alert-danger">* Prenom réquis!</div>
+
+             </div>
+           <div class="form-group col-12">
+              <label for="exampleInputEmail1">Email</label>
+              <input type="text" class="form-control" formControlName="email">
+              <div *ngIf="submited && f.email.errors" class="alert-danger">
+               <div *ngIf="f.email.errors.required">* Email réquis!</div>
+               <div *ngIf="f.email.errors.email">* Email doit être une adresse e-mail valide</div>
+           </div>
+           </div>
+           <div class="form-group col-4">
+            <label for="exampleInputEmail1">Nom d'utilisateur</label>
+            <input type="text" class="form-control" formControlName="username" disabled>
+         </div>
+         
+     
+          
+           <div class="form-group col-4">
+              <label for="exampleInputEmail1">Mobile</label>
+              <input type="number" class="form-control" formControlName="phoneNumber">
+              <div *ngIf="f.phoneNumber.errors && submited"class="alert-danger">* Mobile réquis!</div>
+
+           </div>
+       
+              <div class="form-group col-4">
+                 <label for="exampleInputEmail1">Role</label>
+                 <select class="form-control" formControlName="authority">
+                    <option value="1">Admin</option>
+                    <option value="2">Banker</option>
+                 </select>
+                 <div *ngIf="f.authority.errors && submited"class="alert-danger">* Role réquis!</div>
+
+              </div>
+
+              
+           
+          
+     
+           
+      
+          
+      <div class="col-8"></div>
+      <button class="btn btn-success col-4" type="submit">Modifier</button>
+      </div>
+      </form>
+         </nb-card-body>
+  </nb-card>
+  

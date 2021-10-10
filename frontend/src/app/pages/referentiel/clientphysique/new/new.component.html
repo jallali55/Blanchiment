@@ -1,0 +1,121 @@
+
+
+
+
+ 
+
+<nb-card>
+   <nb-card-header>
+     Nouveau client physique
+   </nb-card-header>
+ 
+   <nb-card-body>
+     
+      <form [formGroup]="clientPhysiqueForm" (ngSubmit)="onSubmit()">
+         <div class="row">
+           <div class="form-group col-12">
+           <label for="exampleInputEmail1">Email</label>
+           <input type="text" class="form-control" formControlName="email">
+           <div *ngIf="submited && f.email.errors" class="alert-danger">
+            <div *ngIf="f.email.errors.required">* Email réquis!</div>
+            <div *ngIf="f.email.errors.email">* Email doit être une adresse e-mail valide</div>
+        </div>
+        </div>
+     
+        <div class="form-group col-4">
+           <label for="text">Fax</label>
+           <input type="text" class="form-control" formControlName="fax">
+           <div *ngIf="f.fax.errors && submited"class="alert-danger">* Fax réquis!</div>
+
+        </div>
+        <div class="form-group col-4">
+           <label for="exampleInputEmail1">Telephone</label>
+           <input type="text" class="form-control" formControlName="tel">
+           <div *ngIf="f.tel.errors && submited"class="alert-danger">* Télephone réquis!</div>
+
+        </div>
+        <div class="form-group col-4">
+           <label for="exampleInputEmail1">Mobile</label>
+           <input type="text" class="form-control" formControlName="mobile">
+           <div *ngIf="f.mobile.errors && submited"class="alert-danger">* Mobile réquis!</div>
+
+        </div>
+             <div class="form-group col-6">
+                 <label for="exampleInputEmail1">Nom</label>
+                 <input type="text" class="form-control" formControlName="nom">
+                 <div *ngIf="f.nom.errors && submited"class="alert-danger">* Nom réquis!</div>
+
+              </div>
+              <div class="form-group col-6">
+                 <label for="exampleInputEmail1">Prenom</label>
+                 <input type="text" class="form-control" formControlName="prenom">
+                 <div *ngIf="f.prenom.errors && submited"class="alert-danger">* Prenom réquis!</div>
+
+              </div>
+              <div class="form-group col-4">
+                 <label for="exampleInputEmail1">Date de naissance</label>
+                 <input type="date" class="form-control" formControlName="birthday">
+                 <div *ngIf="f.birthday.errors && submited"class="alert-danger">* Date de naissance réquis!</div>
+
+              </div>
+         <div class="form-group col-4">
+             <label for="exampleInputEmail1">Cin</label>
+             <input type="text" class="form-control" formControlName="cin">
+             <div *ngIf="f.cin.errors && submited"class="alert-danger">* Cin réquis!</div>
+             <div *ngIf="submited && !unique" class="alert-danger">
+               ce cin existe déja
+            </div>
+          </div>
+         
+         
+          <div class="form-group col-6">
+           <label for="exampleInputEmail1">Pays</label>
+           <select  class="form-control" formControlName="pays">
+               <option *ngFor="let pay of pays"  value="{{pay.id}}" selected>{{pay.nom}}</option>
+           </select>
+           <div *ngIf="f.pays.errors && submited"class="alert-danger">* Pays réquis!</div>
+
+        </div>
+      
+          <div class="form-group col-6">
+             <label for="exampleInputEmail1">Zip Code</label>
+             <input type="text" class="form-control" formControlName="zip_code">
+             <div *ngIf="f.zip_code.errors && submited"class="alert-danger">* Zip code réquis!</div>
+
+          </div>
+        
+        
+         
+          <div class="form-group col-4">
+             <label for="exampleInputEmail1">Fonction</label>
+             <input type="text" class="form-control" formControlName="fct">
+             <div *ngIf="f.fct.errors && submited"class="alert-danger">* Fonction réquis!</div>
+
+          </div>
+          <div class="form-group col-4">
+             <label for="exampleInputEmail1">Langue</label>
+             <input type="text" class="form-control" formControlName="langue">
+             <div *ngIf="f.langue.errors && submited"class="alert-danger">* Langue réquis!</div>
+
+          </div>
+         
+       
+          <div class="form-group col-4">
+             <label for="exampleInputEmail1">Sexe</label>
+             <select  class="form-control" formControlName="sexe">
+                 <option value="male" selected>Male</option>
+                 <option value="female">Female</option>
+             </select>
+             <div *ngIf="f.sexe.errors && submited"class="alert-danger">* Sexe réquis!</div>
+
+          </div>
+          
+     
+         
+     <div class="col-8"></div>
+     <button class="btn btn-success col-4" type="submit">Ajouter</button>
+     </div>
+     </form>
+        </nb-card-body>
+ </nb-card>
+ 
